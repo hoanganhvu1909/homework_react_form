@@ -7,9 +7,9 @@ const FormUser = () => {
     useFormik({
       initialValues: {
         // initialValues đóng vai trò quản lí dữ liệu mặc định cho các input
-        taiKhoan: '',
+        mssv: '',
         email: '',
-        matKhau: '',
+        // matKhau: '',
         soDt: '',
         hoTen: '',
       },
@@ -19,7 +19,7 @@ const FormUser = () => {
         // ở đây là nơi xử lí các logic như đăng ký đăng nhập...
       },
       validationSchema: Yup.object({
-        taiKhoan: Yup.string().required('Vui lòng không bỏ trống').min(5, 'Vui lòng nhập tối thiêu 5 ký tự'),
+        mssv: Yup.string().required('Vui lòng không bỏ trống').min(5, 'Vui lòng nhập tối thiêu 5 ký tự'),
         email: Yup.string().required('Vui lòng không bỏ trống').email('Vui lòng nhập đúng email'),
         hoTen: Yup.string()
           .required('Vui lòng không bỏ trống')
@@ -41,9 +41,20 @@ const FormUser = () => {
     });
 
   return (
-    <div>
+    <div className="container mx-auto">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 gap-5">
+          {/* MSSV */}
+          <InputCustom
+            label="MSSV"
+            name="mssv"
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            placeholder="Vui lòng nhập mã số sinh viên"
+            error={errors.mssv}
+            touched={touched.mssv}
+            value={values.mssv}
+          />
           {/* Name */}
           <InputCustom
             label="Họ và tên"
@@ -55,17 +66,7 @@ const FormUser = () => {
             touched={touched.hoTen}
             value={values.hoTen}
           />
-          {/* Tài khoản */}
-          <InputCustom
-            label="Tài khoản"
-            name="taiKhoan"
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-            placeholder="Vui lòng nhập tài khoản"
-            error={errors.taiKhoan}
-            touched={touched.taiKhoan}
-            value={values.taiKhoan}
-          />
+
           {/* Email */}
           <InputCustom
             label="Email"
@@ -89,7 +90,7 @@ const FormUser = () => {
             value={values.soDt}
           />
           {/* Mật khẩu */}
-          <InputCustom
+          {/* <InputCustom
             label="Mật khẩu"
             name="matKhau"
             handleChange={handleChange}
@@ -100,7 +101,7 @@ const FormUser = () => {
             touched={touched.matKhau}
             className="col-span-2"
             value={values.matKhau}
-          />
+          /> */}
           {/* Chức năng */}
           <div className="space-x-3">
             <button type="submit" className="bg-black text-white py-2 px-5 rounded">
